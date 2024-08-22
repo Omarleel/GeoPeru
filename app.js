@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const departamentosSelect = document.getElementById('departamentos');
             const provinciasSelect = document.getElementById('provincias');
             const distritosSelect = document.getElementById('distritos');
+            const ubigeoInput = document.getElementById('ubigeo');
 
             departamentosSelect.innerHTML = '<option value="" selected disabled>Seleccione un departamento</option>';
             // Población del select de departamentos
@@ -52,6 +53,16 @@ document.addEventListener("DOMContentLoaded", function() {
                     });
                 }
             });
+            distritosSelect.addEventListener('change', function() {
+                const selectedDepartamento = geoData.find(dep => dep.departamento === departamentosSelect.value);
+                const selectedProvincia = selectedDepartamento.provincias.find(prov => prov.provincia === provinciasSelect.value);
+                const selectedDistrito = selectedProvincia.distritos.find(dist => dist.distrito === this.value);
+            
+                if (selectedDistrito) {
+                    ubigeoInput.value = selectedDistrito.ubigeo;
+                }
+            });
+            
         })
         .catch(error => console.error('Error al cargar los datos:', error));
 });
