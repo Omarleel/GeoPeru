@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Evento cuando se selecciona un departamento
             departamentosSelect.addEventListener('change', function() {
+                ubigeoInput.value = "";
                 provinciasSelect.innerHTML = '<option value="" selected disabled>Seleccione una provincia</option>';
                 distritosSelect.innerHTML = '<option value="" selected disabled>Seleccione un distrito</option>';
 
@@ -38,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Evento cuando se selecciona una provincia
             provinciasSelect.addEventListener('change', function() {
+                ubigeoInput.value = "";
                 distritosSelect.innerHTML = '<option value="">Seleccione un distrito</option>';
 
                 const selectedDepartamento = geoData.find(dep => dep.departamento === departamentosSelect.value);
